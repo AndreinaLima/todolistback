@@ -20,7 +20,7 @@ async function bootstrap() {
   app.enableCors(); // Permite CORS
 
   // Usa a porta fornecida pelo ambiente ou 3000 como padrão
-  const port = process.env.PORT || 3000;
+  const port = process.env.DB_PORT || 3000;
   await app.listen(port);
 }
 bootstrap();
