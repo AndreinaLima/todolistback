@@ -17,7 +17,10 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  app.enableCors(); // Permite CORS
+  // Habilita CORS apenas para o domínio do seu front-end
+  app.enableCors({
+    origin: 'https://todolist-front-iota.vercel.app', // URL do front-end
+  });
 
   // Usa a porta fornecida pelo ambiente ou 3000 como padrão
   const port = process.env.PORT || 3000;
