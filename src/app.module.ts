@@ -14,18 +14,21 @@ import { User } from './users/user.entity';
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: configService.get<'postgres'>('DB_TYPE'),
-        host: configService.get<string>('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_DATABASE'),
-        entities: [Todo, User],
-        synchronize: true,
-      }),
+      useFactory: (configService: ConfigService) => {
+        const dbUrl = `postgresql://${configService.get<string>('DB_USERNAME')}:${configService.get<string>('DB_PASSWORD')}@dpg-crl4ejrtq21c73e7qdrg-a.ohio-postgres.render.com:${configService.get<number>('DB_PORT')}/${configService.get<string>('DB_DATABASE')}`;
+        return {
+          type: 'postgres',
+          url: dbUrl,
+          entities: [Todo, User],
+          synchronize: true,
+          ssl: {
+            rejectUnauthorized: false, // Ajuste isso conforme necessário para o seu ambiente
+          },
+        };
+      },
       inject: [ConfigService],
     }),
+
     TodoModule,
     AuthModule,
     UsersModule,
