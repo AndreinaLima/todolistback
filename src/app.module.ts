@@ -22,7 +22,7 @@ import { User } from './users/user.entity';
           entities: [Todo, User],
           synchronize: true,
           ssl: {
-            rejectUnauthorized: false, // Ajuste isso conforme necessário para o seu ambiente
+            rejectUnauthorized: false,
           },
         };
       },

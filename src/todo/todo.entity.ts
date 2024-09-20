@@ -1,5 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { User } from '../users/user.entity'; // Ajuste o caminho conforme necessário
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+} from 'typeorm';
+import { User } from '../users/user.entity';
 
 @Entity()
 export class Todo {
@@ -14,6 +20,9 @@ export class Todo {
 
   @Column({ default: false })
   isCompleted: boolean;
+
+  @CreateDateColumn()
+  createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.todos, { nullable: false })
   user: User;

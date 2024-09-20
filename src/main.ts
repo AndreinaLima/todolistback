@@ -11,19 +11,18 @@ async function bootstrap() {
     .setDescription('The TodoList API description')
     .setVersion('1.0')
     .addTag('todos')
-    .addBearerAuth() // Adiciona suporte para autenticação Bearer (JWT)
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  // Habilita CORS apenas para o domínio do seu front-end
   app.enableCors({
-    origin: 'https://todolist-front-iota.vercel.app', // URL do front-end
+    origin: ['https://todolist-front-iota.vercel.app', 'http://localhost:5173'],
   });
 
-  // Usa a porta fornecida pelo ambiente ou 3000 como padrão
   const port = process.env.PORT || 3000;
   await app.listen(port);
 }
+
 bootstrap();

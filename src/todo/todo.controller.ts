@@ -11,8 +11,8 @@ import {
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { Todo } from './todo.entity';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard'; // Certifique-se de que o caminho está correto
-import { User } from '../users/user.decorator'; // Certifique-se de que o caminho está correto
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { User } from '../users/user.decorator';
 
 @Controller('todos')
 @UseGuards(JwtAuthGuard) // Aplica o guard globalmente neste controller

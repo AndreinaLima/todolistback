@@ -56,7 +56,7 @@ export class TodoService {
     const todo = await this.todoRepository.findOne({
       where: {
         id: id,
-        user: { id: userId }, // Ajuste para usar a relação com o usuário
+        user: { id: userId },
       },
     });
 

@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Todo } from '../todo/todo.entity'; // Ajuste o caminho conforme necessário
+import { Todo } from '../todo/todo.entity';
 
 @Entity()
 export class User {
